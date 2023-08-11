@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplo de Interação Python-HTML</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $("#atualiza").on("click",function(){
+                console.log("clicou no botão");
+            })
+
+        function carregarDados() {
+            var dados = document.getElementById('inputData').value;
+            window.pywebinterface.carregarDados(dados);
+        }
+    
+        function atualizarTabela() {
+            console.log("clicou")
+            window.pywebinterface.atualizarTabela();
+        }
+    
+        // Função para atualizar a tabela com os dados recebidos do servidor
+        window.atualizarTabela = function () {
+            fetch('/obter_dados')
+                .then(response => response.json())
+                .then(data => {
+                    var tabela = document.getElementById('tabelaDados');
+                    tabela.innerHTML = '<tr><th>1</th><th>2</th></tr>';
+                    for (let i = 0; i < data.dados.length; i++) {
+                        var row = tabela.insertRow();
+                        var indexCell = row.insertCell(0);
+                        var dataCell = row.insertCell(1);
+                        indexCell.innerHTML = i;
+                        dataCell.innerHTML = data.dados[i];
+                    }
+                });
+        }
+    });
+    </script>
+</head>
+<body>
+
+
+    <h1>Exemplo de Interação Python-HTML</h1>
+    <input type="text" id="inputData" placeholder="Digite os dados">
+    <button id = "carrega" onclick="carregarDados()">Carregar Dados</button>
+    <button id = "atualiza" onclick="atualizarTabela()">Atualizar Tabela</button>
+    <div>
+        <table id="tabelaDados">
+            <tr>
+                <th>Índice</th>
+                <th>Dados</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function carregarDados() {
+            var dados = document.getElementById('inputData').value;
+            window.pywebinterface.carregarDados(dados);
+        }
+
+        function atualizarTabela() {
+            window.pywebinterface.atualizarTabela();
+        }
+    </script>
+</body>
+</html>

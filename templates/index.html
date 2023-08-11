@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="/lib/w3codecolor.js"></script>
+<div class="top_ad" style="text-align:center;">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- h728_90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3358087580113880"
+     data-ad-slot="1139034814"></ins>
+</div>
+<head>
+    <style>
+        table, th, td {
+            border: 2px solid black;
+        }
+        tr:hover{background-color:#e4bbbb}
+        </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashzap</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js" integrity="sha512-Z6C1p1NIexPj5MsVUunW4pg7uMX6/TT3CUVldmjXx2kpip1eZcrAnxIusDxyFIikyM9A61zOVNgvLr/TGudOQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div >
+        <h1>Tabela de Patrimônio Completa</h1>
+        <a href='http://127.0.0.1:5000/autenticar'><button>Login</button></a>
+
+
+    </div>
+    <div>
+        <table id="tabelaDados">
+            <tr>
+                <th>Nr Patrimônio</th>
+                <th>Descrição</th>
+            </tr>
+            {% for itens in reprovados %}
+            <tr>    
+                <th>{{itens.patrimonio}} </th>
+                <th>{{itens.descricao}}</th>
+            </tr>    
+                {% endfor %}
+
+        </table>
+    </div>
+    {% block conteudo %}
+    {% endblock %}
+
+
+    <div>
+        <table id="tabelaFaltante">
+            
+            {% for pendente in restante %}
+            <tr>    
+                <th>{{pendente.patrimonio}} </th>
+                <th>{{pendente.descricao}}</th>
+            </tr>    
+                {% endfor %}
+
+        </table>
+    </div>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+        
+        
+
+            $("#botao").on('click', function() {
+                console.log("clicou botao");
+                $("#tabelaDados").append($("<th>").text("teste de mensagem"));
+            })
+        
+        })
+    </script>
+</body>
+</html>

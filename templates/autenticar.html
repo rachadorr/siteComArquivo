@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block conteudo %}
+    <form action="/autenticar" >
+        <input type="text" name = "codigo" >
+        <button id="botao" type="submit">Enviar</button>
+    </form>
+
+    <tr>
+        <th>Nr Patrimônio</th>
+        <th>Descrição</th>
+    </tr>    
+{% endblock %}
