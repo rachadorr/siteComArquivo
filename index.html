@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- Container Principal -->
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+
+        <!-- Tela de Login -->
+        <div id="login-screen" class="space-y-6">
+            <h2 class="text-2xl font-bold text-center text-gray-800">Login</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                    <input type="email" id="email" name="email" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="password" name="password" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Entrar
+                </button>
+            </form>
+            <div class="text-center text-sm">
+                <a href="#" onclick="showScreen('forgot-password-screen')"
+                   class="text-blue-600 hover:underline">Esqueceu a senha?</a>
+            </div>
+            <div class="text-center text-sm">
+                <p>Não tem uma conta? <a href="#" onclick="showScreen('register-screen')"
+                                         class="text-blue-600 hover:underline">Criar conta</a></p>
+            </div>
+        </div>
+
+        <!-- Tela de Criar Conta -->
+        <div id="register-screen" class="space-y-6 hidden">
+            <h2 class="text-2xl font-bold text-center text-gray-800">Criar Conta</h2>
+            <form id="register-form" class="space-y-4">
+                <div>
+                    <label for="register-name" class="block text-sm font-medium text-gray-700">Nome</label>
+                    <input type="text" id="register-name" name="name" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="register-email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                    <input type="email" id="register-email" name="email" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="register-password" class="block text-sm font-medium text-gray-700">Senha</label>
+                    <input type="password" id="register-password" name="password" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Criar Conta
+                </button>
+            </form>
+            <div class="text-center text-sm">
+                <p>Já tem uma conta? <a href="#" onclick="showScreen('login-screen')"
+                                        class="text-blue-600 hover:underline">Fazer login</a></p>
+            </div>
+        </div>
+
+        <!-- Tela de Recuperar Conta -->
+        <div id="forgot-password-screen" class="space-y-6 hidden">
+            <h2 class="text-2xl font-bold text-center text-gray-800">Recuperar Conta</h2>
+            <form id="forgot-password-form" class="space-y-4">
+                <div>
+                    <label for="forgot-email" class="block text-sm font-medium text-gray-700">E-mail</label>
+                    <input type="email" id="forgot-email" name="email" required
+                           class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Enviar E-mail de Recuperação
+                </button>
+            </form>
+            <div class="text-center text-sm">
+                <p>Voltar para <a href="#" onclick="showScreen('login-screen')"
+                                  class="text-blue-600 hover:underline">Login</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript para alternar telas -->
+    <script>
+        function showScreen(screenId) {
+            // Esconde todas as telas
+            document.querySelectorAll('#login-screen, #register-screen, #forgot-password-screen')
+                .forEach(screen => screen.classList.add('hidden'));
+            // Mostra a tela desejada
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        // Manipulação do formulário de login
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            // Aqui você pode adicionar a lógica para integrar com N8N (ex.: chamada de API)
+            console.log('Login:', { email, password });
+            // Exemplo: redirecionar para dashboard após login bem-sucedido
+            // window.location.href = '/dashboard';
+        });
+
+        // Manipulação do formulário de criar conta
+        document.getElementById('register-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            // Aqui você pode adicionar a lógica para integrar com N8N
+            console.log('Registro:', { name, email, password });
+            // Exemplo: mostrar mensagem de sucesso e voltar para login
+            alert('Conta criada com sucesso!');
+            showScreen('login-screen');
+        });
+
+        // Manipulação do formulário de recuperação de conta
+        document.getElementById('forgot-password-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('forgot-email').value;
+            // Aqui você pode adicionar a lógica para integrar com N8N
+            console.log('Recuperação:', { email });
+            // Exemplo: mostrar mensagem de sucesso
+            alert('E-mail de recuperação enviado!');
+            showScreen('login-screen');
+        });
+    </script>
+</body>
+</html>
